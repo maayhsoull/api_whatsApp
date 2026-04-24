@@ -67,7 +67,7 @@ app.get('/v1/senai/whatsapp/contato/:numero', function (request, response) {
 })
 
 //endpoint para listar todas as mensagens  trocadas de uma conta de usuario
-app.get('/v1/senai/whatsapp/contatos', function (request, response) {
+app.get('/v1/senai/whatsapp/contact', function (request, response) {
     let numeroUsuario = request.query.numero
     let usuario = funcoes.getListarMensagensUsuarios(numeroUsuario)
 
