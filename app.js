@@ -29,7 +29,7 @@ app.use(cors(corsOptions))
 const funcoes = require('./modulo/funcoes.js')
 
 //endpoint para listar todos os dados da api
-app.get('/v1/senai/listar/contatos', function (request, response) {
+app.get('/v1/senai/whatsapp/contatos', function (request, response) {
 
     let usuarios = funcoes.getListarContatos()
 
@@ -38,7 +38,7 @@ app.get('/v1/senai/listar/contatos', function (request, response) {
 })
 
 //endpoint para listar dados do usuario
-app.get('/v1/senai/listar/usuario/:numero', function (request, response) {
+app.get('/v1/senai/whatsapp/usuario/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDaConta(numeroUsuario)
 
@@ -53,7 +53,7 @@ app.get('/v1/senai/listar/usuario/:numero', function (request, response) {
 
 
 //endpoint para retornar os dados de cada contato de um numero
-app.get('/v1/senai/listar/contatos/:numero', function (request, response) {
+app.get('/v1/senai/whatsapp/contato/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDeContato(numeroUsuario)
 
@@ -67,7 +67,7 @@ app.get('/v1/senai/listar/contatos/:numero', function (request, response) {
 })
 
 //endpoint para listar todas as mensagens  trocadas de uma conta de usuario
-app.get('/v1/senai/listar/contatos', function (request, response) {
+app.get('/v1/senai/whatsapp/contatos', function (request, response) {
     let numeroUsuario = request.query.numero
     let usuario = funcoes.getListarMensagensUsuarios(numeroUsuario)
 
@@ -81,7 +81,7 @@ app.get('/v1/senai/listar/contatos', function (request, response) {
 })
 
 //endpoint para listar uma conversa de um usuário e um contato
-app.get('/v1/senai/listar/conversa/usuario', function (request, response) {
+app.get('/v1/senai/whatsapp/conversa/usuario', function (request, response) {
     let numeroUsuario = request.query.numero
     let mensagemUsuario = request.query.usuario
     let user = funcoes.getListarConversasUsuarios(numeroUsuario, mensagemUsuario)
@@ -98,7 +98,7 @@ app.get('/v1/senai/listar/conversa/usuario', function (request, response) {
 })
 
 //endpoint para listar uma conversa com base em uma palavra chave
-app.get('/v1/senai/listar/mensagem', function (request, response) {
+app.get('/v1/senai/whatsapp/mensagem', function (request, response) {
     let numeroUsuario = request.query.numero
     let palavraMensagem = request.query.palavra
     let user = funcoes.getListarPalavraChave(numeroUsuario, palavraMensagem)
@@ -124,27 +124,27 @@ app.get('/v1/senai/help', function (request, response) {
         "Endpoints": [
             {
                 "id": 1,
-                "Rota 1": "/v1/senai/listar/contatos",
+                "Rota 1": "/v1/senai/whatsapp/contatos",
                 "obs": "Retorna a lista de todos os usuarios",
             },
             {
                 "id": 2,
-                "Rota 2": "/v1/senai/listar/usuario/:numero",
+                "Rota 2": "/v1/senai/whatsapp/usuario/:numero",
                 "obs": "Retorna os dados do usuario filtrando pelo numero de telefone",
             },
             {
                 "id": 3,
-                "Rota 3": "/v1/senai/listar/contatos/:numero",
+                "Rota 3": "/v1/senai/whatsapp/contato/:numero",
                 "obs": "retornar os dados de cada contato de um usuario filtrando pelo numero de telefone",
             },
             {
                 "id": 4,
-                "Rota 4": "/v1/senai/listar/conversa/usuario",
+                "Rota 4": "/v1/senai/whatsapp/conversa/usuario",
                 "obs": "Retorna uma lista com todas as mensagens trocadas de uma conta de usuario filtrado primeiro pelo numero e posteriormente pelo contato do usuario",
             },
             {
                 "id": 5,
-                "Rota 5": "/v1/senai/listar/mensagem",
+                "Rota 5": "/v1/senai/whatsapp/mensagem",
                 "obs": "Retorna uma lista de uma conversa filtrando por um numero de usuario e porteriormente por uma palavra chave",
             },
         ]
