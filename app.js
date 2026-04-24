@@ -29,7 +29,7 @@ app.use(cors(corsOptions))
 const funcoes = require('./modulo/funcoes.js')
 
 //endpoint para listar todos os dados da api
-app.get('/v1/senai/whatsapp/contatos', function (request, response) {
+app.get('/v1/senai/whatsapp/usuarios', function (request, response) {
 
     let usuarios = funcoes.getListarContatos()
 
@@ -38,7 +38,7 @@ app.get('/v1/senai/whatsapp/contatos', function (request, response) {
 })
 
 //endpoint para listar dados do usuario //colocar perfil/usuario
-app.get('/v1/senai/whatsapp/usuario/:numero', function (request, response) {
+app.get('/v1/senai/whatsapp/perfil/usuario/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDaConta(numeroUsuario)
 
@@ -51,9 +51,8 @@ app.get('/v1/senai/whatsapp/usuario/:numero', function (request, response) {
     }
 })
 
-
 //endpoint para retornar os dados de cada contato de um numero //contatos/usuario/numero
-app.get('/v1/senai/whatsapp/contato/:numero', function (request, response) {
+app.get('/v1/senai/whatsapp/contatos/usuario/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDeContato(numeroUsuario)
 
@@ -67,7 +66,7 @@ app.get('/v1/senai/whatsapp/contato/:numero', function (request, response) {
 })
 
 //endpoint para listar todas as mensagens  trocadas de uma conta de usuario
-app.get('/v1/senai/whatsapp/contact', function (request, response) {
+app.get('/v1/senai/whatsapp/mensagens/usuario', function (request, response) {
     let numeroUsuario = request.query.numero
     let usuario = funcoes.getListarMensagensUsuarios(numeroUsuario)
 
@@ -81,10 +80,10 @@ app.get('/v1/senai/whatsapp/contact', function (request, response) {
 })
 
 //endpoint para listar uma conversa de um usuário e um contato //conversas/mensagens
-app.get('/v1/senai/whatsapp/conversa/usuario', function (request, response) {
+app.get('/v1/senai/whatsapp/conversas/mensagens/usuario', function (request, response) {
     let numeroUsuario = request.query.numero
-    let mensagemUsuario = request.query.usuario
-    let user = funcoes.getListarConversasUsuarios(numeroUsuario, mensagemUsuario)
+    let nomeContato = request.query.usuario
+    let user = funcoes.getListarConversasUsuarios(numeroUsuario, nomeContato)
 
     if (user) {
         response.status(200)
@@ -98,7 +97,7 @@ app.get('/v1/senai/whatsapp/conversa/usuario', function (request, response) {
 })
 
 //endpoint para listar uma conversa com base em uma palavra chave
-app.get('/v1/senai/whatsapp/mensagem', function (request, response) {
+app.get('/v1/senai/whatsapp/palavra/chave', function (request, response) {
     let numeroUsuario = request.query.numero
     let palavraMensagem = request.query.palavra
     let user = funcoes.getListarPalavraChave(numeroUsuario, palavraMensagem)
@@ -114,7 +113,7 @@ app.get('/v1/senai/whatsapp/mensagem', function (request, response) {
 
 })
 
-app.get('/v1/senai/help', function (request, response) {
+app.get('/v1/senai/whatsapp/help', function (request, response) {
 
     let docAPI = {
         "API - description": "API para manipular dados de usuários e conversas de whatsApp",
@@ -124,29 +123,34 @@ app.get('/v1/senai/help', function (request, response) {
         "Endpoints": [
             {
                 "id": 1,
-                "Rota 1": "/v1/senai/whatsapp/contatos",
+                "Rota 1": "/v1/senai/whatsapp/usuarios",
                 "obs": "Retorna a lista de todos os usuarios",
             },
             {
                 "id": 2,
-                "Rota 2": "/v1/senai/whatsapp/usuario/:numero",
-                "obs": "Retorna os dados do usuario filtrando pelo numero de telefone",
+                "Rota 2": "/v1/senai/whatsapp/contatos/usuario/:numero",
+                "obs": "Retorna os dados do usuario filtrando pelo numero de telefone, enviar o atributo numero via parametro",
             },
             {
                 "id": 3,
                 "Rota 3": "/v1/senai/whatsapp/contato/:numero",
-                "obs": "retornar os dados de cada contato de um usuario filtrando pelo numero de telefone",
+                "obs": "retornar os dados de cada contato de um usuario filtrando pelo numero de telefone, enviar o atributo numero via parametro",
             },
             {
                 "id": 4,
-                "Rota 4": "/v1/senai/whatsapp/conversa/usuario",
-                "obs": "Retorna uma lista com todas as mensagens trocadas de uma conta de usuario filtrado primeiro pelo numero e posteriormente pelo contato do usuario",
+                "Rota 4": "/v1/senai/whatsapp/mensagens/usuario",
+                "obs": "Retorna uma lista com todas as mensagens trocadas de uma conta de usuario filtrado primeiro pelo numero e posteriormente pelo contato do usuario, enviar o atributo numero query",
             },
             {
                 "id": 5,
-                "Rota 5": "/v1/senai/whatsapp/mensagem",
-                "obs": "Retorna uma lista de uma conversa filtrando por um numero de usuario e porteriormente por uma palavra chave",
+                "Rota 5": "/v1/senai/whatsapp/conversas/mensagens/usuario",
+                "obs": "Retorna uma lista com uma conversa de um usuário e um contato, enviar o atributo numero e o atributo nome do contato via query",
             },
+            {
+                "id": 6,
+                "Rota 6": "/v1/senai/whatsapp/palavra/chave",
+                "obs": "Retorna uma lista de uma conversa filtrando por um numero de usuario e porteriormente por uma palavra chave, enviar o atributo numero e o atributo palavra chave via query",
+            }
         ]
     }
 
