@@ -37,7 +37,7 @@ app.get('/v1/senai/whatsapp/contatos', function (request, response) {
     response.status(200)
 })
 
-//endpoint para listar dados do usuario
+//endpoint para listar dados do usuario //colocar perfil/usuario
 app.get('/v1/senai/whatsapp/usuario/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDaConta(numeroUsuario)
@@ -52,7 +52,7 @@ app.get('/v1/senai/whatsapp/usuario/:numero', function (request, response) {
 })
 
 
-//endpoint para retornar os dados de cada contato de um numero
+//endpoint para retornar os dados de cada contato de um numero //contatos/usuario/numero
 app.get('/v1/senai/whatsapp/contato/:numero', function (request, response) {
     let numeroUsuario = request.params.numero
     let usuario = funcoes.getListarDadosDeContato(numeroUsuario)
@@ -80,7 +80,7 @@ app.get('/v1/senai/whatsapp/contact', function (request, response) {
     }
 })
 
-//endpoint para listar uma conversa de um usuário e um contato
+//endpoint para listar uma conversa de um usuário e um contato //conversas/mensagens
 app.get('/v1/senai/whatsapp/conversa/usuario', function (request, response) {
     let numeroUsuario = request.query.numero
     let mensagemUsuario = request.query.usuario
