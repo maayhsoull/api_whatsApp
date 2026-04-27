@@ -128,18 +128,18 @@ app.get('/v1/senai/whatsapp/help', function (request, response) {
             },
             {
                 "id": 2,
-                "Rota 2": "/v1/senai/whatsapp/contatos/usuario/:numero",
+                "Rota 2": "/v1/senai/whatsapp/perfil/usuario/:numero",
                 "obs": "Retorna os dados do usuario filtrando pelo numero de telefone, enviar o atributo numero via parametro",
             },
             {
                 "id": 3,
-                "Rota 3": "/v1/senai/whatsapp/contato/:numero",
+                "Rota 3": "/v1/senai/whatsapp/contatos/usuario/:numero",
                 "obs": "retornar os dados de cada contato de um usuario filtrando pelo numero de telefone, enviar o atributo numero via parametro",
             },
             {
                 "id": 4,
                 "Rota 4": "/v1/senai/whatsapp/mensagens/usuario",
-                "obs": "Retorna uma lista com todas as mensagens trocadas de uma conta de usuario filtrado primeiro pelo numero e posteriormente pelo contato do usuario, enviar o atributo numero query",
+                "obs": "Retorna uma lista com todas as mensagens trocadas de uma conta de usuario filtrado primeiro pelo numero, enviar o atributo numero query",
             },
             {
                 "id": 5,
